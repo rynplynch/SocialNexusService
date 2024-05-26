@@ -1,0 +1,6 @@
+@SocialNexusService_HostAddress = http://localhost:5094
+
+GET {{SocialNexusService_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
