@@ -1,0 +1,19 @@
+#+title: Intro. to Unity's Input System
+#+author: Ryan Lynch
+#+date: \today
+#+latex_compiler: xelatex
+#+latex_header: \usepackage{libertine}
+#+latex_header: \usepackage[width=200.00mm, height=240.00mm, left=3cm, right=3cm, top=3 cm, bottom=3cm]{geometry}
+#+LATEX_CLASS: article
+#+LATEX_CLASS_OPTIONS: [a4paper,11pt,twoside]
+#+OPTIONS: num:nil
+* Introduction
+This git repo was generated using the following command:
+#+begin_src bash
+dotnet new webapi --auth IndividualB2C --use-program-main -controllers
+#+end_src
+* Configured For Azure AD
+That starter code was then configured to connect to SocialNexus Azure AD B2C instance in the /appsettings.json/ file.
+* Containerized
+Wrote Dockerfile to create image of built service. Then took that image and hosted it in Kubernetes enviroment.
+*

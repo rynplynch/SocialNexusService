@@ -1,20 +1,33 @@
-# Introduction 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
 
-# Getting Started
-TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
-1.	Installation process
-2.	Software dependencies
-3.	Latest releases
-4.	API references
+# Table of Contents
 
-# Build and Test
-TODO: Describe and show how to build your code and run the tests. 
+-   [Introduction](#org08c08d5)
+-   [Configured For Azure AD](#org4cb4a90)
+-   [Containerized](#org1cede37)
 
-# Contribute
-TODO: Explain how other users and developers can contribute to make your code better. 
 
-If you want to learn more about creating good readme files then refer the following [guidelines](https://docs.microsoft.com/en-us/azure/devops/repos/git/create-a-readme?view=azure-devops). You can also seek inspiration from the below readme files:
-- [ASP.NET Core](https://github.com/aspnet/Home)
-- [Visual Studio Code](https://github.com/Microsoft/vscode)
-- [Chakra Core](https://github.com/Microsoft/ChakraCore)
+
+<a id="org08c08d5"></a>
+
+# Introduction
+
+This git repo was generated using the following command:
+
+    dotnet new webapi --auth IndividualB2C --use-program-main -controllers
+
+
+<a id="org4cb4a90"></a>
+
+# Configured For Azure AD
+
+That starter code was then configured to connect to SocialNexus Azure AD B2C instance in the *appsettings.json* file.
+
+
+<a id="org1cede37"></a>
+
+# Containerized
+
+Wrote Dockerfile to create image of built service. Then took that image and hosted it in Kubernetes enviroment.
+
+\*
+
