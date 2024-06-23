@@ -1,4 +1,4 @@
-#+title: Intro. to Unity's Input System
+#+title: SocialNexusService README
 #+author: Ryan Lynch
 #+date: \today
 #+latex_compiler: xelatex
@@ -12,8 +12,18 @@ This git repo was generated using the following command:
 #+begin_src bash
 dotnet new webapi --auth IndividualB2C --use-program-main -controllers
 #+end_src
-* Configured For Azure AD
-That starter code was then configured to connect to SocialNexus Azure AD B2C instance in the /appsettings.json/ file.
-* Containerized
-Wrote Dockerfile to create image of built service. Then took that image and hosted it in Kubernetes enviroment.
-*
+
+The SocialNexusService provides data persistence to the SocialNexusClient. It is a web API which uses Azure AD Access tokens to expose data.
+* Running as a Docker image
+** Create Image
+#+begin_src bash
+docker build -t rynplynch/social-nexus-service .
+#+end_src
+** Push Image
+#+begin_src bash
+docker push rynplynch/social-nexus-service:latest
+#+end_src
+** Run Image
+#+begin_src bash
+docker run --publish 8080:8080 --detach --name social-nexus-be rynplynch/social-nexus-service
+#+end_src
