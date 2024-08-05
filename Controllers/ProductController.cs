@@ -57,17 +57,4 @@ public class ProductsController : ControllerBase
         return products.AsEnumerable();
     }
 
-    // // return only the products the user created
-    // [HttpGet(Name = "GetProduct")]
-    // public IActionResult GetById(int id)
-    // {
-    //     // loop through all the products
-    //     foreach (Product p in products)
-    //     {
-    //         if (p.Id == id)
-    //             return Ok();
-    //     }
-
-    //     return NotFound();
-    // }
 }
