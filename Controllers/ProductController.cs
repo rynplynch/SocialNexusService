@@ -57,4 +57,40 @@ public class ProductsController : ControllerBase
         return products.AsEnumerable();
     }
 
+    [Authorize]
+    [HttpDelete(Name = "DeleteProduct")]
+    [RequiredScope("product.create")]
+    public IActionResult Delete(int id)
+    {
+        // extract user object id from access_token
+        string? callersUserID = User.FindFirstValue("sub");
+
+        // loop over the list of products
+        for (int i = 0; i < products.Count; i++)
+        {
+            // get the product at the current index
+            Product p = products.ElementAt(i);
+
+            // if the id of the product matches and
+            if (p.PrimaryKey == id)
+            {
+                // and the call created the product
+                if (p.OwnerId == callersUserID)
+                {
+                    // delete the product
+                    products.RemoveAt(i);
+
+                    // return status 200 and the deleted product
+                    return Ok(p);
+                }
+                // if the product was not created by the caller
+                else
+                    // let them know they are not authorized
+                    return Unauthorized(p);
+            }
+        }
+
+        // we searched the list and found nothing
+        return NoContent();
+    }
 }
