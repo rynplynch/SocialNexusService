@@ -1,7 +1,6 @@
-using System;
+using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using Microsoft.Identity.Web.Resource;
 using SocialNexusService.Models;
 
@@ -9,13 +8,14 @@ namespace SocialNexusService.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-[Authorize]
-[RequiredScope(RequiredScopesConfigurationKey = "AzureAd:Scopes")]
 public class ProductsController : ControllerBase
 {
     // a list of products
     // TODO make this data stored in database
     private static readonly List<Product> products = new List<Product>();
+
+    // used to set primary id, to be removed when db added
+    private static int counter = 0;
 
     private readonly ILogger<ProductsController> _logger;
 
@@ -24,12 +24,9 @@ public class ProductsController : ControllerBase
         _logger = logger;
     }
 
-    /// <summary>
-    /// Add the passed in product to the products list
-    /// </summary>
-    /// <returns><c>IAcIActionResult</c></returns>
+    [Authorize]
     [HttpPost(Name = "PostProduct")]
-    [ValidateAntiForgeryToken]
+    [RequiredScope("product.create")]
     public IActionResult Create(Product product)
     {
         // set the id of the product to the length of the list
