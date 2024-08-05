@@ -18,10 +18,12 @@ public class ProductsController : ControllerBase
     private static int counter = 0;
 
     private readonly ILogger<ProductsController> _logger;
+    private readonly IConfiguration _config;
 
-    public ProductsController(ILogger<ProductsController> logger)
+    public ProductsController(ILogger<ProductsController> logger, IConfiguration config)
     {
         _logger = logger;
+        _config = config;
     }
 
     [Authorize]
