@@ -31,8 +31,8 @@ public class ProductsController : ControllerBase
     [RequiredScope("product.create")]
     public IActionResult Create(Product product)
     {
-        // set the id of the product to the length of the list
-        product.Id = products.Count;
+        // set the id of the product to value of counter
+        product.PrimaryKey = counter;
 
         // use the user's UID to mark them as the owner
 
