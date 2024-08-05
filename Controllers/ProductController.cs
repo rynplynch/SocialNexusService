@@ -34,10 +34,19 @@ public class ProductsController : ControllerBase
         // set the id of the product to value of counter
         product.PrimaryKey = counter;
 
-        // use the user's UID to mark them as the owner
+        // increment to counter for next product
+        counter++;
 
+        // extract user object id from access_token
+        string? callersUserID = User.FindFirstValue("sub");
+
+        // save who created the product
+        product.OwnerId = callersUserID!;
+
+        // add the product to the list
         products.Add(product);
 
+        // return status 200 and the product object
         return Ok(product);
     }
 
